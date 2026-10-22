@@ -1,0 +1,7 @@
+services:
+  bale-bot:
+    build: .
+    container_name: zoppini_bale_bot
+    restart: unless-stopped
+    env_file:
+      - .env
