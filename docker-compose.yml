@@ -1,7 +1,22 @@
 services:
-  bale-bot:
+  zoppini-bale-bot:
     build: .
-    container_name: zoppini_bale_bot
+    container_name: zoppini-bale-bot
     restart: unless-stopped
     env_file:
       - .env
+    environment:
+      - BOT_STATE_FILE=/data/bot-state.json
+      - BOT_HEARTBEAT_FILE=/tmp/bot-heartbeat.json
+    volumes:
+      - zoppini_bale_bot_data:/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+volumes:
+  zoppini_bale_bot_data:

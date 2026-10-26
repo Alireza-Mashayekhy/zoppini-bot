@@ -1,7 +1,7 @@
 {
   "name": "zoppini-bale-manager",
   "version": "1.0.0",
-  "description": "ربات مدیریتی Zoppini روی پیام‌رسان بله (گزارش فروش، موجودی، سفارش و مشتری)",
+  "description": "ربات مدیریتی Zoppini روی پیام‌رسان بله (گزارش فروش، موجودی، سفارش، مشتری، اعلان خودکار و تنظیمات)",
   "private": true,
   "type": "module",
   "engines": {
@@ -9,7 +9,9 @@
   },
   "scripts": {
     "start": "node --env-file=.env bot.mjs",
-    "check": "node --check bot.mjs && node --check bot.test.mjs",
-    "test": "node --test bot.test.mjs"
+    "healthcheck": "node bot.mjs --healthcheck",
+    "check": "node --check bot.mjs && node --check src/auth.mjs && node --check src/csv.mjs && node --check src/formatters.mjs && node --check bot.test.mjs && node --check e2e-staging.test.mjs",
+    "test": "node --test bot.test.mjs",
+    "test:e2e": "node --test e2e-staging.test.mjs"
   }
 }
