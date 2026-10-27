@@ -10,6 +10,8 @@ services:
       - BOT_HEARTBEAT_FILE=/tmp/bot-heartbeat.json
     volumes:
       - zoppini_bale_bot_data:/data
+    networks:
+      - back_net
     read_only: true
     tmpfs:
       - /tmp
@@ -20,3 +22,8 @@ services:
 
 volumes:
   zoppini_bale_bot_data:
+
+networks:
+  back_net:
+    external: true
+    name: zoppini-back_default # اگر خروجی NET_NAME نام دیگری بود، همان را بگذارید
